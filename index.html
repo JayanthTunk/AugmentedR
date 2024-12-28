@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple AR Website</title>
+    <title>Simple AR with Marker</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
     <style>
@@ -36,15 +36,16 @@
 
     <!-- AR Scene -->
     <a-scene embedded arjs>
+      <!-- AR Marker -->
       <a-marker preset="hiro">
-        <!-- Simple 3D Object -->
+        <!-- 3D Object -->
         <a-box position="0 0.5 0" material="color: green;"></a-box>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-      // Check if camera is accessible
+      // Check for camera access
       navigator.mediaDevices
         .getUserMedia({ video: true })
         .then(() => {
