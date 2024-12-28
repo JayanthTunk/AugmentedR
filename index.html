@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Website</title>
+    <title>Simple AR Website</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
     <style>
@@ -11,47 +11,49 @@
         margin: 0;
         overflow: hidden;
       }
-      #permission-error {
+      #error-message {
         display: none;
-        position: absolute;
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(255, 0, 0, 0.8);
         color: white;
         padding: 20px;
-        border-radius: 8px;
+        border-radius: 10px;
         text-align: center;
+        font-family: Arial, sans-serif;
       }
     </style>
   </head>
   <body>
-    <div id="permission-error">
+    <!-- Error Message -->
+    <div id="error-message">
       <p><strong>Webcam Error:</strong></p>
-      <p id="error-message"></p>
+      <p id="error-details"></p>
       <p>Please allow camera access and refresh the page.</p>
     </div>
 
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-      <!-- Marker -->
+    <!-- AR Scene -->
+    <a-scene embedded arjs>
       <a-marker preset="hiro">
-        <!-- 3D Object -->
-        <a-box position="0 0.5 0" material="color: blue;"></a-box>
+        <!-- Simple 3D Object -->
+        <a-box position="0 0.5 0" material="color: green;"></a-box>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-      // Request camera permissions explicitly
+      // Check if camera is accessible
       navigator.mediaDevices
         .getUserMedia({ video: true })
-        .then((stream) => {
-          console.log("Camera access granted.");
+        .then(() => {
+          console.log("Camera is accessible.");
         })
-        .catch((err) => {
-          console.error("Webcam Error:", err);
-          document.getElementById("permission-error").style.display = "block";
-          document.getElementById("error-message").innerText = `Name: ${err.name}\nMessage: ${err.message}`;
+        .catch((error) => {
+          console.error("Webcam Error:", error);
+          document.getElementById("error-message").style.display = "block";
+          document.getElementById("error-details").innerText = `Name: ${error.name}\nMessage: ${error.message}`;
         });
     </script>
   </body>
