@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Image Display</title>
+    <title>AR with Surface Tracking</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
     <style>
@@ -11,16 +11,32 @@
         margin: 0;
         overflow: hidden;
       }
+
+      a-scene {
+        width: 90vw; /* Reduce the camera frame size by 10% */
+        height: 90vh;
+        margin: auto;
+        display: block;
+      }
     </style>
   </head>
   <body>
-    <!-- AR Scene -->
-    <a-scene embedded arjs>
-      <!-- AR Marker -->
-      <a-marker preset="hiro">
-        <!-- Image to Display -->
-        <a-plane src="./app.png" position="0 0 0" rotation="-90 0 0" height="1" width="1"></a-plane>
-      </a-marker>
+    <a-scene embedded arjs="sourceType: webcam;">
+      <!-- Surface Tracking -->
+      <a-entity 
+        arjs-anchor-generator="trackingMethod: best;"
+        visible="true">
+        <!-- Add the Image -->
+        <a-plane 
+          src="app.png" 
+          position="0 0 0" 
+          rotation="-90 0 0" 
+          height="1" 
+          width="1">
+        </a-plane>
+      </a-entity>
+
+      <!-- Camera -->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
