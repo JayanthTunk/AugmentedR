@@ -70,6 +70,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        z-index: 999;
       }
 
       @media (max-width: 768px) {
@@ -99,7 +100,11 @@
     </div>
 
     <!-- A-Frame Scene -->
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false;">
+    <a-scene 
+      embedded 
+      arjs="sourceType: webcam; debugUIEnabled: false;" 
+      vr-mode-ui="enabled: false;"
+      id="ar-scene">
       <!-- Display Image -->
       <a-plane 
         src="app.png" 
@@ -119,18 +124,17 @@
     <script>
       const landingPage = document.getElementById("landing-page");
       const tryJARButton = document.getElementById("try-jar");
-      const scene = document.querySelector("a-scene");
+      const scene = document.getElementById("ar-scene");
       const exitARButton = document.getElementById("exit-ar");
-
-      // Disable browser zoom
-      document.addEventListener("gesturestart", (e) => e.preventDefault());
-      document.addEventListener("gesturechange", (e) => e.preventDefault());
 
       // When "Try J-AR" is clicked
       tryJARButton.addEventListener("click", () => {
         landingPage.style.display = "none"; // Hide landing page
         scene.style.display = "block"; // Show AR scene
         exitARButton.style.display = "block"; // Show Exit AR button
+        setTimeout(() => {
+          scene.components["arjs"].start(); // Ensure AR.js starts camera feed
+        }, 100); // Delay to allow scene initialization
       });
 
       // When "Exit AR" is clicked
