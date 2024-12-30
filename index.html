@@ -3,41 +3,69 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR with Surface Tracking</title>
+    <title>Simple AR with Button</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
     <style>
       body {
         margin: 0;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
       a-scene {
-        width: 90vw; /* Reduce the camera frame size by 10% */
+        width: 90vw; /* Reduce camera frame size by 10% */
         height: 90vh;
         margin: auto;
-        display: block;
+        display: none; /* Hidden by default until button is clicked */
+      }
+
+      #start-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #start-button:hover {
+        background-color: #0056b3;
       }
     </style>
   </head>
   <body>
+    <!-- Start Button -->
+    <button id="start-button">Turn On Camera</button>
+
+    <!-- A-Frame Scene -->
     <a-scene embedded arjs="sourceType: webcam;">
-      <!-- Surface Tracking -->
-      <a-entity 
-        arjs-anchor-generator="trackingMethod: best;"
-        visible="true">
-        <!-- Add the Image -->
-        <a-plane 
-          src="app.png" 
-          position="0 0 0" 
-          rotation="-90 0 0" 
-          height="1" 
-          width="1">
-        </a-plane>
-      </a-entity>
+      <!-- Display the Image Directly -->
+      <a-plane 
+        src="app.png" 
+        position="0 0 -2" 
+        rotation="0 0 0" 
+        height="1" 
+        width="1">
+      </a-plane>
 
       <!-- Camera -->
       <a-entity camera></a-entity>
     </a-scene>
+
+    <script>
+      // JavaScript to Show AR Scene on Button Click
+      const startButton = document.getElementById("start-button");
+      const scene = document.querySelector("a-scene");
+
+      startButton.addEventListener("click", () => {
+        startButton.style.display = "none"; // Hide the button
+        scene.style.display = "block"; // Show the AR scene
+      });
+    </script>
   </body>
 </html>
