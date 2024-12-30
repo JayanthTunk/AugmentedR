@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="orientation" content="portrait">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>J-AR</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
@@ -69,12 +71,6 @@
           padding: 10px 20px;
         }
       }
-
-      /* Prevent AR Image from being too small */
-      a-plane {
-        width: 1.5; /* Increase width */
-        height: 1.5; /* Increase height */
-      }
     </style>
   </head>
   <body>
@@ -88,18 +84,19 @@
     </div>
 
     <!-- A-Frame Scene -->
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
       <!-- Display Image Directly -->
       <a-plane 
         src="app.png" 
         position="0 0 -2" 
         rotation="0 0 0" 
-        height="1.5" 
-        width="1.5">
+        height="0.5" 
+        width="0.5" 
+        scale="2 2 2"> <!-- Set default scale to avoid unexpected large images -->
       </a-plane>
 
       <!-- Camera -->
-      <a-entity camera></a-entity>
+      <a-entity camera look-controls-enabled="false"></a-entity>
     </a-scene>
 
     <script>
@@ -112,6 +109,13 @@
         landingPage.style.display = "none"; // Hide landing page
         scene.style.display = "block"; // Show AR scene
       });
+
+      // Lock the orientation to portrait
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock("portrait").catch(() => {
+          console.warn("Portrait orientation not supported on this device.");
+        });
+      }
     </script>
   </body>
 </html>
