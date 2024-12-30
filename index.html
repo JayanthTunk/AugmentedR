@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="orientation" content="portrait">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>J-AR</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
@@ -20,18 +18,17 @@
         justify-content: center;
         height: 100vh;
         overflow: hidden;
+        text-align: center; /* Ensure text is always centered */
       }
 
       h1 {
         font-size: 3rem;
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        text-align: center;
       }
 
       p {
         font-size: 1.2rem;
         margin: 20px 0;
-        text-align: center;
         max-width: 600px;
       }
 
@@ -64,6 +61,7 @@
 
         p {
           font-size: 1rem;
+          margin: 10px 20px;
         }
 
         button {
@@ -90,13 +88,12 @@
         src="app.png" 
         position="0 0 -2" 
         rotation="0 0 0" 
-        height="0.5" 
-        width="0.5" 
-        scale="2 2 2"> <!-- Set default scale to avoid unexpected large images -->
+        height="1" 
+        width="1">
       </a-plane>
 
       <!-- Camera -->
-      <a-entity camera look-controls-enabled="false"></a-entity>
+      <a-entity camera position="0 1.6 0"></a-entity>
     </a-scene>
 
     <script>
@@ -109,13 +106,6 @@
         landingPage.style.display = "none"; // Hide landing page
         scene.style.display = "block"; // Show AR scene
       });
-
-      // Lock the orientation to portrait
-      if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock("portrait").catch(() => {
-          console.warn("Portrait orientation not supported on this device.");
-        });
-      }
     </script>
   </body>
 </html>
