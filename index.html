@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>J-AR</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
@@ -23,6 +23,7 @@
       h1 {
         font-size: 3rem;
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        text-align: center;
       }
 
       p {
@@ -51,9 +52,26 @@
         display: none;
         width: 100vw;
         height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: black;
       }
 
-      /* Mobile-friendly styles */
+      #exit-ar {
+        display: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
       @media (max-width: 768px) {
         h1 {
           font-size: 2rem;
@@ -81,8 +99,8 @@
     </div>
 
     <!-- A-Frame Scene -->
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-      <!-- Display Image Directly -->
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false;">
+      <!-- Display Image -->
       <a-plane 
         src="app.png" 
         position="0 0 -2" 
@@ -95,15 +113,31 @@
       <a-entity camera></a-entity>
     </a-scene>
 
+    <!-- Exit AR Button -->
+    <button id="exit-ar">Exit AR</button>
+
     <script>
       const landingPage = document.getElementById("landing-page");
       const tryJARButton = document.getElementById("try-jar");
       const scene = document.querySelector("a-scene");
+      const exitARButton = document.getElementById("exit-ar");
+
+      // Disable browser zoom
+      document.addEventListener("gesturestart", (e) => e.preventDefault());
+      document.addEventListener("gesturechange", (e) => e.preventDefault());
 
       // When "Try J-AR" is clicked
       tryJARButton.addEventListener("click", () => {
         landingPage.style.display = "none"; // Hide landing page
         scene.style.display = "block"; // Show AR scene
+        exitARButton.style.display = "block"; // Show Exit AR button
+      });
+
+      // When "Exit AR" is clicked
+      exitARButton.addEventListener("click", () => {
+        scene.style.display = "none"; // Hide AR scene
+        exitARButton.style.display = "none"; // Hide Exit AR button
+        landingPage.style.display = "flex"; // Show landing page
       });
     </script>
   </body>
