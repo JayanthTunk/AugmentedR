@@ -3,48 +3,86 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple AR with Button</title>
+    <title>J-AR</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
     <style>
       body {
         margin: 0;
-        overflow: hidden;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #4a90e2, #50a3a2);
+        color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        height: 100vh;
+        overflow: hidden;
       }
 
-      a-scene {
-        width: 90vw; /* Reduce camera frame size by 10% */
-        height: 90vh;
-        margin: auto;
-        display: none; /* Hidden by default until button is clicked */
+      h1 {
+        font-size: 3rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
       }
 
-      #start-button {
-        padding: 10px 20px;
-        font-size: 16px;
-        color: #fff;
-        background-color: #007bff;
+      p {
+        font-size: 1.2rem;
+        margin: 20px 0;
+        text-align: center;
+        max-width: 600px;
+      }
+
+      button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        color: white;
+        background: #007bff;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        transition: background 0.3s ease;
       }
 
-      #start-button:hover {
-        background-color: #0056b3;
+      button:hover {
+        background: #0056b3;
+      }
+
+      a-scene {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      /* Mobile-friendly styles */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+
+        button {
+          font-size: 1rem;
+          padding: 10px 20px;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- Start Button -->
-    <button id="start-button">Turn On Camera</button>
+    <!-- Landing Page -->
+    <div id="landing-page">
+      <h1>Welcome to J-AR</h1>
+      <p>
+        Experience the power of Augmented Reality with J-AR! Click the button below to try our AR feature.
+      </p>
+      <button id="try-jar">Try J-AR</button>
+    </div>
 
     <!-- A-Frame Scene -->
-    <a-scene embedded arjs="sourceType: webcam;">
-      <!-- Display the Image Directly -->
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+      <!-- Display Image Directly -->
       <a-plane 
         src="app.png" 
         position="0 0 -2" 
@@ -58,13 +96,14 @@
     </a-scene>
 
     <script>
-      // JavaScript to Show AR Scene on Button Click
-      const startButton = document.getElementById("start-button");
+      const landingPage = document.getElementById("landing-page");
+      const tryJARButton = document.getElementById("try-jar");
       const scene = document.querySelector("a-scene");
 
-      startButton.addEventListener("click", () => {
-        startButton.style.display = "none"; // Hide the button
-        scene.style.display = "block"; // Show the AR scene
+      // When "Try J-AR" is clicked
+      tryJARButton.addEventListener("click", () => {
+        landingPage.style.display = "none"; // Hide landing page
+        scene.style.display = "block"; // Show AR scene
       });
     </script>
   </body>
