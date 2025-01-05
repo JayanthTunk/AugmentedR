@@ -20,16 +20,14 @@
         overflow: hidden;
       }
 
-      h1 {
-        font-size: 3rem;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      #landing-page {
+        text-align: center;
       }
 
-      p {
-        font-size: 1.2rem;
-        margin: 20px 0;
-        text-align: center;
-        max-width: 600px;
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
       }
 
       button {
@@ -41,6 +39,7 @@
         border-radius: 5px;
         cursor: pointer;
         transition: background 0.3s ease;
+        margin-top: 20px;
       }
 
       button:hover {
@@ -53,19 +52,46 @@
         height: 100vh;
       }
 
+      .footer {
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .footer a {
+        text-decoration: none;
+        color: white;
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .footer a:hover {
+        transform: scale(1.2);
+        color: #ff6347;
+      }
+
+      /* Icon Styles */
+      .footer img {
+        width: 30px;
+        height: 30px;
+      }
+
       /* Mobile-friendly styles */
       @media (max-width: 768px) {
         h1 {
           font-size: 2rem;
         }
 
-        p {
-          font-size: 1rem;
-        }
-
         button {
           font-size: 1rem;
           padding: 10px 20px;
+        }
+
+        .footer img {
+          width: 25px;
+          height: 25px;
         }
       }
     </style>
@@ -74,15 +100,11 @@
     <!-- Landing Page -->
     <div id="landing-page">
       <h1>Welcome to J-AR</h1>
-      <p>
-        Experience the power of Augmented Reality with J-AR! Click the button below to try our AR feature.
-      </p>
       <button id="try-jar">Try J-AR</button>
     </div>
 
     <!-- A-Frame Scene -->
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-      <!-- Transparent Background Text -->
       <a-entity position="0 0 -2">
         <a-text 
           value="Wishing you a very Happy Makar Sankranti! May your life be filled with joy, prosperity, and good health." 
@@ -93,8 +115,6 @@
           wrap-count="40"
           position="0 0.6 0">
         </a-text>
-
-        <!-- Image Below Text -->
         <a-plane 
           src="app.jpg" 
           position="0 -0.6 -2" 
@@ -102,10 +122,21 @@
           width="2.4">
         </a-plane>
       </a-entity>
-
-      <!-- Camera -->
       <a-entity camera look-controls></a-entity>
     </a-scene>
+
+    <!-- Footer with Social Media Icons -->
+    <div class="footer">
+      <a href="https://github.com/JayanthTunk" target="_blank">
+        <img src="github-icon.png" alt="GitHub" />
+      </a>
+      <a href="https://www.linkedin.com/in/jayanthtunk/" target="_blank">
+        <img src="linkedin-icon.png" alt="LinkedIn" />
+      </a>
+      <a href="https://jayanthtunk.netlify.app/" target="_blank">
+        <img src="website-icon.png" alt="Website" />
+      </a>
+    </div>
 
     <script>
       const landingPage = document.getElementById("landing-page");
