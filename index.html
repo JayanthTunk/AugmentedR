@@ -82,13 +82,20 @@
 
     <!-- A-Frame Scene -->
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-      <!-- Display Image Directly -->
+      <!-- Display Text Directly -->
       <a-plane 
-        src="app.png" 
         position="0 0 -2" 
         rotation="0 0 0" 
         height="1" 
-        width="1">
+        width="2" 
+        color="#ffdd57">
+        <a-text 
+          value="Wishing you a very Happy Makar Sankranti! May your life be filled with joy, prosperity, and good health." 
+          width="1.8" 
+          color="#000" 
+          align="center"
+          position="0 0 0.01">
+        </a-text>
       </a-plane>
 
       <!-- Camera -->
