@@ -83,8 +83,7 @@
     <!-- A-Frame Scene -->
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
       <!-- Transparent Background Text -->
-      <a-entity 
-        position="0 0 -2">
+      <a-entity position="0 0 -2">
         <a-text 
           value="Wishing you a very Happy Makar Sankranti! May your life be filled with joy, prosperity, and good health." 
           width="2" 
@@ -94,6 +93,14 @@
           wrap-count="40"
           position="0 0.5 0">
         </a-text>
+
+        <!-- Image Below Text -->
+        <a-plane 
+          src="app.jpg" 
+          position="0 -0.5 -2" 
+          height="0.8" 
+          width="1.2">
+        </a-plane>
       </a-entity>
 
       <!-- Camera -->
