@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>J-AR</title>
+    <title>Try out J-AR </title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
     <style>
       body {
         margin: 0;
-        font-family: Arial, sans-serif;
+        font-family: "Roboto", Arial, sans-serif;
         background: linear-gradient(to bottom, #4a90e2, #50a3a2);
         color: white;
         display: flex;
@@ -26,7 +26,7 @@
 
       h1 {
         font-size: 3rem;
-        margin-bottom: 20px;
+        margin: 20px 0;
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
       }
 
@@ -44,6 +44,15 @@
 
       button:hover {
         background: #0056b3;
+      }
+
+      .link {
+        display: block;
+        margin-top: 10px;
+        font-size: 1rem;
+        color: #ffdc64;
+        text-decoration: underline;
+        cursor: pointer;
       }
 
       a-scene {
@@ -72,13 +81,11 @@
         color: #ff6347;
       }
 
-      /* Icon Styles */
       .footer img {
         width: 30px;
         height: 30px;
       }
 
-      /* Mobile-friendly styles */
       @media (max-width: 768px) {
         h1 {
           font-size: 2rem;
@@ -99,17 +106,19 @@
   <body>
     <!-- Landing Page -->
     <div id="landing-page">
+      <img src="app.jpg" alt="App Image" style="max-width: 80%; border-radius: 10px;" />
+      <h1>Happy Sankranti</h1>
       <h1>Welcome to J-AR</h1>
       <button id="try-jar">Try J-AR</button>
+      <a class="link" href="landing.html" target="_blank">Visit J-AR</a>
     </div>
 
     <!-- A-Frame Scene -->
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: true;">
       <a-entity position="0 0 -2">
         <a-text 
-          value="Wishing you a very Happy Makar Sankranti! May your life be filled with joy, prosperity, and good health." 
+          value="Wishing you a very Happy Makar Sankranti!" 
           width="2.2" 
-          align="center" 
           color="#ff6347" 
           font-weight="bold"
           wrap-count="40"
@@ -125,7 +134,7 @@
       <a-entity camera look-controls></a-entity>
     </a-scene>
 
-    <!-- Footer with Social Media Icons -->
+    <!-- Footer -->
     <div class="footer">
       <a href="https://github.com/JayanthTunk" target="_blank">
         <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" />
