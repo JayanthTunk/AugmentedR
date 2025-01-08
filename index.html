@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Try out J-AR </title>
+    <title>Try out J-AR</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
     <style>
@@ -86,6 +86,14 @@
         height: 30px;
       }
 
+      #ar-text {
+        font-size: 2rem;
+        color: #ff6347;
+        text-align: center;
+        margin-top: 20px;
+        display: none; /* Initially hidden */
+      }
+
       @media (max-width: 768px) {
         h1 {
           font-size: 2rem;
@@ -106,8 +114,6 @@
   <body>
     <!-- Landing Page -->
     <div id="landing-page">
-      <img src="app.jpg" alt="App Image" style="max-width: 80%; border-radius: 10px;" />
-      <h1>Happy Sankranti</h1>
       <h1>Welcome to J-AR</h1>
       <button id="try-jar">Try J-AR</button>
       <a class="link" href="landing.html" target="_blank">Visit J-AR</a>
@@ -116,20 +122,21 @@
     <!-- A-Frame Scene -->
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: true;">
       <a-entity position="0 0 -2">
-        <a-text 
-          value="Wishing you a very Happy Makar Sankranti!" 
-          width="2.2" 
-          color="#ff6347" 
-          font-weight="bold"
-          wrap-count="40"
-          position="0 0.6 0">
-        </a-text>
         <a-plane 
           src="app.jpg" 
-          position="0 -0.6 -2" 
+          position="0 0 -2" 
           height="1.6" 
           width="2.4">
         </a-plane>
+        <a-text 
+          id="ar-text" 
+          value="Wishing you a very Happy Makar Sankranti!" 
+          width="2.5" 
+          color="#ff6347" 
+          font-weight="bold"
+          wrap-count="40"
+          position="0 -1.8 0">
+        </a-text>
       </a-entity>
       <a-entity camera look-controls></a-entity>
     </a-scene>
@@ -151,11 +158,13 @@
       const landingPage = document.getElementById("landing-page");
       const tryJARButton = document.getElementById("try-jar");
       const scene = document.querySelector("a-scene");
+      const arText = document.getElementById("ar-text");
 
       // When "Try J-AR" is clicked
       tryJARButton.addEventListener("click", () => {
         landingPage.style.display = "none"; // Hide landing page
         scene.style.display = "block"; // Show AR scene
+        arText.style.display = "block"; // Show AR text
       });
 
       // Fix zoom on mobile devices
