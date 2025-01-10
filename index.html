@@ -122,12 +122,15 @@
     <!-- A-Frame Scene -->
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: true;">
       <a-entity position="0 0 -2">
-        <a-plane 
-          src="video-unscreen.gif" 
+        <!-- Replace with a video file -->
+        <a-video 
+          src="video.mp4" 
           position="0 0 -2" 
           height="1.6" 
-          width="2.4">
-        </a-plane>
+          width="2.4"
+          autoplay="true"
+          loop="true">
+        </a-video>
         <a-text 
           id="ar-text" 
           value="Wishing you a very Happy Makar Sankranti!" 
