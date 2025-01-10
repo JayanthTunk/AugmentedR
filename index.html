@@ -7,7 +7,16 @@
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
     <style>
-      body {
+        .link img {
+  width: 50px; /* Adjust size */
+  height: 50px;
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.link img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+  body {
         margin: 0;
         font-family: "Roboto", Arial, sans-serif;
         background: linear-gradient(to bottom, #4a90e2, #50a3a2);
@@ -116,8 +125,11 @@
     <div id="landing-page">
       <h1>"Welcome to J-AR"</h1>
       <button id="try-jar">Try J-AR</button>
-      <br> <br> <br>
-      <button class="link-button" onclick="window.open('landingpage.html', '_blank')">Visit J-AR</button>
+      <br> <br> <br> <br> <br> <br> <br> 
+      <a class="link" href="landingpage.html" target="_blank">
+        <img src="favicon.png" alt="Visit J-AR" style="width: 50px; height: 50px;">
+      </a>
+      
     </div>
 
     <!-- A-Frame Scene -->
