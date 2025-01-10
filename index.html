@@ -123,11 +123,12 @@
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: true;">
       <a-entity position="0 0 -2">
         <a-plane 
-          src="app.png" 
-          position="0 0 -2" 
-          height="1.6" 
-          width="2.4">
-        </a-plane>
+  src="app.png" 
+  position="0 0 -2" 
+  height="1.6" 
+  width="2.4" 
+  material="transparent: true; opacity: 1;">
+</a-plane>
         <a-text 
           id="ar-text" 
           value="Wishing you a very Happy Makar Sankranti!" 
